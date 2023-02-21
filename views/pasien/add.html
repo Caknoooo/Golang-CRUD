@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .container {
+        max-width: 550px;
+      }
+    </style>
+
+    <title>Golang CRUD</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h3>Data Pasien</h3>
+      <a href="/pasien" class="btn btn-sm btn-primary">Lihat Data</a>
+      <hr />
+
+      {{ if .pesan }}
+      <div class="alert alert-success">{{ .pesan }}</div>
+      {{ end }}
+
+      <form action="/pasien/add" method="post">
+        <div class="form-group">
+          <label for="">Nama Lengkap</label>
+          <input
+            type="text"
+            name="nama_lengkap"
+            id=""
+            value="{{ .pasien.NamaLengkap }}"
+            class="form-control {{ if .validation.NamaLengkap }} is-invalid {{ end }}"
+          />
+          <div class="invalid-feedback">{{ .validation.NamaLengkap }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">NIK</label>
+          <input
+            type="text"
+            name="nik"
+            id=""
+            value="{{ .pasien.NIK }}"
+            class="form-control {{ if .validation.NIK }} is-invalid {{ end }}"
+          />
+          <div class="invalid-feedback">{{ .validation.NIK }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">Jenis Kelamin</label>
+          <select
+            name="jenis_kelamin"
+            id=""
+            value="{{ .pasien.JenisKelamin }}"
+            class="form-control {{ if .validation.JenisKelamin }} is-invalid {{ end }}"
+          >
+            <option value="">Pilih Jenis Kelamin</option>
+            <option {{ if eq .pasien.JenisKelamin `1` }} selected {{ end }} value="1">Laki Laki</option>
+            <option {{ if eq .pasien.JenisKelamin `2` }} selected {{ end }} value="2">Perempuan</option>
+          </select>
+          <div class="invalid-feedback">{{ .validation.JenisKelamin }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">Tempat Lahir</label>
+          <input
+            type="text"
+            name="tempat_lahir"
+            id=""
+            value="{{ .pasien.TempatLahir }}"
+            class="form-control {{ if .validation.TempatLahir }} is-invalid {{ end }}"
+          />
+          <div class="invalid-feedback">{{ .validation.TempatLahir }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">Tanggal Lahir</label>
+          <input
+            type="date"
+            name="tanggal_lahir"
+            id=""
+            value="{{ .pasien.TanggalLahir }}"
+            class="form-control {{ if .validation.TanggalLahir }} is-invalid {{ end }}"
+          />
+          <div class="invalid-feedback">{{ .validation.TanggalLahir }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">Alamat</label>
+          <textarea
+            name="alamat"
+            id=""
+            value="{{ .pasien.Alamat }}"
+            class="form-control {{ if .validation.Alamat }} is-invalid {{ end }}"
+          ></textarea>
+          <div class="invalid-feedback">{{ .validation.Alamat }}</div>
+        </div>
+        <div class="form-group">
+          <label for="">No Hp</label>
+          <input
+            type="text"
+            name="no_hp"
+            value="{{ .pasien.NoHp }}"
+            class="form-control {{ if .validation.NoHp }} is-invalid {{ end }}"
+          />
+          <div class="invalid-feedback">{{ .validation.NoHp }}</div>
+        </div>
+        <br />
+        <div class="form-group d-grid gap-2">
+          <button class="btn btn-primary btn-" type="submit">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
