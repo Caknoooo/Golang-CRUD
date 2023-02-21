@@ -22,7 +22,7 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h3>Data Pasien</h3>
+      <h3>Ubah Data Pasien</h3>
       <a href="/pasien" class="btn btn-sm btn-primary">Lihat Data</a>
       <hr />
 
@@ -30,7 +30,7 @@
       <div class="alert alert-success">{{ .pesan }}</div>
       {{ end }}
 
-      <form action="/pasien/add" method="post">
+      <form action="/pasien/edit" method="post">
         <div class="form-group">
           <label for="">Nama Lengkap</label>
           <input
@@ -111,7 +111,8 @@
         </div>
         <br />
         <div class="form-group d-grid gap-2">
-          <button class="btn btn-primary btn-" type="submit">Simpan</button>
+          <input type="hidden" name="id" value="{{ .pasien.Id }}">
+          <button class="btn btn-primary btn-" type="submit">Ubah Data</button>
         </div>
       </form>
     </div>
